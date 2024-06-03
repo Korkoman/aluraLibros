@@ -14,8 +14,8 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private String fechaNacimiento;
-    private String fechaDeceso;
+    private Integer fechaNacimiento;
+    private Integer fechaDeceso;
     @OneToOne
     private Libro libro;
 
@@ -51,11 +51,11 @@ public class Autor {
         this.id = id;
     }
 
-    public String getFechaNacimiento() {
+    public Integer getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Integer fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -67,11 +67,11 @@ public class Autor {
         this.nombre = nombre;
     }
 
-    public String getFechaDeceso() {
+    public Integer getFechaDeceso() {
         return fechaDeceso;
     }
 
-    public void setFechaDeceso(String fechaDeceso) {
+    public void setFechaDeceso(Integer fechaDeceso) {
         this.fechaDeceso = fechaDeceso;
     }
 
@@ -85,11 +85,12 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", fechaDeceso=" + fechaDeceso +
-                '}';
+        return """
+                ***** Autor *****
+                
+                Nombre: %s
+                Año de nacimiento: %s
+                Año de muerte: %s                
+                """.formatted(nombre,fechaNacimiento,fechaDeceso);
     }
 }

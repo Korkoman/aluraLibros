@@ -1,7 +1,6 @@
 package com.aluraChallenge.librosAlura;
 
 import com.aluraChallenge.librosAlura.principal.Principal;
-import com.aluraChallenge.librosAlura.repository.AutorRepository;
 import com.aluraChallenge.librosAlura.repository.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

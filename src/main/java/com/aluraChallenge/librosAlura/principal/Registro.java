@@ -4,13 +4,13 @@ import com.aluraChallenge.librosAlura.model.Autor;
 import com.aluraChallenge.librosAlura.model.DatosLibro;
 import com.aluraChallenge.librosAlura.model.DatosResultados;
 import com.aluraChallenge.librosAlura.model.Libro;
-import com.aluraChallenge.librosAlura.repository.AutorRepository;
 import com.aluraChallenge.librosAlura.repository.LibroRepository;
 import com.aluraChallenge.librosAlura.service.ConsumoApi;
 import com.aluraChallenge.librosAlura.service.ConvierteDatos;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -32,6 +32,7 @@ public class Registro {
     @Transactional
     public void registraLibro(LibroRepository repository){
 
+        try{
         ConsumoApi consumoApi = new ConsumoApi();
         ConvierteDatos convierteDatos = new ConvierteDatos();
         System.out.println("Ingrese el nombre del libro a consultar");
@@ -49,7 +50,28 @@ public class Registro {
         }else{
             System.out.println("Libro no encontrado");
         }
+    } catch (RuntimeException  e){
+            System.out.println(e.getMessage());
+        }
+    }
 
+    public List<Libro> listaDeLibros(LibroRepository repository){
+        return repository.todosLosLibros();
+    }
 
+    public List<Autor> listaAutores(LibroRepository repository){
+        return repository.todoLosAutores();
+    }
+
+    public List<String> listaAutoresVivos(LibroRepository repository){
+        System.out.println("Ingrese el año a consultar");
+        Integer anho = teclado.nextInt();
+        return repository.autoresVivesAño(anho);
+    }
+
+    public List<Libro> librosPorIdioma(LibroRepository repository){
+        System.out.println("Ingrese el idioma que quiere consultar. Recuerde la nomenclatura de consulta.\n Ejemplo: en - english");
+        String idioma = teclado.nextLine();
+        return repository.librosPorIdioma(idioma);
     }
 }

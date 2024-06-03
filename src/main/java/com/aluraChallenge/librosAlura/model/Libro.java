@@ -85,11 +85,13 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", autor='" + autor + '\'' +
-                ", idioma='" + idioma + '\'' +
-                "'";
+        return """
+               ***** Libro *****
+                              
+               Título: %s
+               Autor: %s     
+               Idioma: %s
+               
+                """.formatted(nombre,autor,idioma);
     }
 }
